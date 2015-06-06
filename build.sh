@@ -14,17 +14,17 @@ export OUTDIR=$DEVICEDIR/out
 
 cd $DEVICEDIR
 
-make zwliew_defconfig
-time make -j4 > ../a
-cp arch/arm/boot/zImage $MKBOOTIMGDIR/$DEVICE/zImage
-cp -r ramdisk $MKBOOTIMGDIR/$DEVICE
-
-# find . -name "*.ko" -exec cp {} $OUTDIR/system/lib/modules \;
-
 if [ "$2" = "1" ]
 then
   make mrproper
 fi
+
+make zwliew_defconfig
+time make -j4 > ../a
+cp arch/arm/boot/zImage $MKBOOTIMGDIR/$DEVICE/kernel
+cp -r ramdisk $MKBOOTIMGDIR/$DEVICE
+
+# find . -name "*.ko" -exec cp {} $OUTDIR/system/lib/modules \;
 
 cd $MKBOOTIMGDIR
 
@@ -34,7 +34,7 @@ mv boot.img $OUTDIR/boot.img
 cd $DEVICE
 
 rm -r ramdisk
-rm zImage
+rm kernel
 
 # cd $OUTDIR/system/lib/modules
 
