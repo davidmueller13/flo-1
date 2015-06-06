@@ -12,7 +12,7 @@ export OUTDIR=$DEVICEDIR/out
 
 #export OUTDIR=$DEVICEDIR/out/$DEVICE
 
-cd $KERNELDIR
+cd $DEVICEDIR
 
 make zwliew_defconfig
 time make -j4 > ../a
@@ -48,4 +48,4 @@ mv boot.img zwliew_Kernel-$DEVICE-$ZWLIEW_VERSION.img
 # zip -r zwliew_Kernel-$DEVICE-$ZWLIEW_VERSION.zip system
 # zip zwliew_Kernel-$DEVICE-$ZWLIEW_VERSION.zip boot.img
 
-cd $KERNELDIR
+cd $DEVICEDIR
